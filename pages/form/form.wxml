@@ -1,0 +1,67 @@
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+        <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+            <mp-cells title="📄 {{_t['basicInfo']}}">
+                <mp-cell prop="name" title="{{_t['name']}}" ext-class="">
+                    <input bindinput="formInputChange" data-field="name" class="weui-input"
+                        placeholder="Input your name" />
+                </mp-cell>
+                <mp-cell prop="email" title="{{_t['email']}}" ext-class="">
+                    <input bindinput="formInputChange" data-field="email" class="weui-input"
+                        placeholder="Input your Email" />
+                </mp-cell>
+                <mp-cell prop="name" title="{{_t['title']}}" ext-class="">
+                    <input bindinput="formInputChange" data-field="title" class="weui-input"
+                        placeholder="Input your paper title" />
+                </mp-cell>
+                <mp-cell prop="number" title="{{_t['wordLimit']}}" ext-class="">
+                    <input bindinput="formInputChange" data-field="wordLimit" class="weui-input"
+                        placeholder="Input your word limit" />
+                </mp-cell>
+                <mp-cell prop="date" title="{{_t['deadline']}}" ext-class="">
+                    <picker data-field="date" mode="date" value="{{date}}" bindchange="bindDateChange">
+                        <view class="weui-input">{{date}}</view>
+                    </picker>
+                </mp-cell>
+
+                <mp-cells title="📖 {{_t['language']}}">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="radioChange">
+                        <mp-checkbox wx:for="{{radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}"
+                            checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+
+                </mp-cells>
+
+            <view class="weui-cells__title">📝 {{_t['require']}}</view>
+            <!-- <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="please input requirements" style="height: 3.3em" />
+                        <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view> -->
+
+            <mp-cell prop="name"  ext-class="">
+                    <textarea class="weui-textarea" placeholder="please input requirements" 
+                    bindinput="requireChange" data-field="require"
+                    style="height: 5.3em" />
+                </mp-cell>
+        <!-- </view> -->
+        </mp-form>
+
+        
+
+        <view class="weui-btn-upload upload-btn">
+            <view class="file-name" wx:for="{{fileList}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+            <text >{{item.filename}}</text>
+        </view>
+            <button loading="{{uploadLoading.status}}" class="weui-btn" type="default" bindtap="uploadFile">{{uploadLoading.text}}</button>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" loading="{{submitFormLoading}}" bindtap="submitForm">{{_t['submit']}}</button>
+        </view>
+    </view>
+    <view class="fillings"></view>
+</view>

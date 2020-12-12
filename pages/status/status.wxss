@@ -1,0 +1,34 @@
+/* pages/status/status.wxss */
+.empty-tips {
+ margin-left: 300rpx;
+ margin-top: 200rpx;
+}
+
+.order-card {
+  margin: 0 7rpx 25rpx 7rpx;
+}
+
+.fillings{
+  height: 48px;
+}
+.line{
+  height:2rpx;
+  background:#aaa;
+  }
+
+.history-time-start{
+  padding:0 10rpx;
+  color: white;
+  background: #10AEFF;
+}
+
+.history-time-finish{
+  padding:0 10rpx;
+  color: white;
+  background: #73D872;
+}
+
+.history-item{
+  color: gray;
+  margin:20rpx 0rpx;
+}
