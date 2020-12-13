@@ -1,0 +1,98 @@
+<!--pages/status/status.wxml-->
+<!-- <div class="container" style="background-color: #fff;">
+  <view class="progress-box">
+    <div class="title">论文1</div>
+    <progress percent="20" show-info stroke-width="3" />
+  </view>
+</div> -->
+<view class="page">
+  <view class="page__bd">
+
+    <view wx:for="{{thesisList}}" wx:key="unique" wx:for-index="idx" wx:for-item="item">
+      <!-- 进行中的订单 -->
+      <view class="order-card" wx:if="{{item.jsonData.currStatus != 20200105}}">
+
+        <wux-wing-blank size="default">
+          <wux-card title="{{_t['paper']}}-{{item.jsonData.counter}}" extra="{{_t['handIn']}}"
+            thumb="../../images/order-details/icon-ddfh.png" thumb-style="border-radius: 50%;">
+            <view slot="body">
+              <view class="title">{{item.jsonData.title}}</view>
+              <progress percent="{{item.jsonData.precent}}" active show-info color="#10AEFF" stroke-width="3" />
+            </view>
+            <view slot="footer" data-id="{{item.id}}" bindtap='onCLickHistory'>
+
+              <view wx:for="{{item.jsonData.historyList }}" wx:key="unique" wx:for-index="index" wx:for-item="hisItem">
+                <view wx:if="{{index==0 || historyMap[item.id]}}" class="history-item">
+                  <!-- 订单状态时间 -->
+                  <view wx:if="{{hisItem.status == '20200105'}}" class="history-time-finish">{{item.dateAdd}}</view>
+                  <view  wx:else  class="history-time-start">{{item.dateAdd}}</view>
+                  <!-- 订单状态文字描述 -->
+                  <view wx:if="{{hisItem.status == '20200101'}}"  class="history-desc">{{_t['orderSart']}}</view>
+                  <view  wx:elif="{{hisItem.status == '20200102'}}"   class="history-desc">{{_t['1000words']}}</view>  
+                  <view  wx:elif="{{hisItem.status == '20200103'}}"   class="history-desc">{{_t['2000words']}}</view> 
+                  <view  wx:elif="{{hisItem.status == '20200104'}}"   class="history-desc">{{_t['startpoli']}}</view> 
+                  <view  wx:elif="{{hisItem.status == '20200105'}}"   class="history-desc">{{_t['orderComp']}}</view>               
+                </view>
+              </view>
+
+            </view>
+          </wux-card>
+        </wux-wing-blank>
+
+      </view>
+
+      <!-- 已经完成的订单 -->
+      <view class="order-card" wx:elif="{{item.jsonData.currStatus == 20200105}}">
+        <wux-wing-blank size="default">
+          <wux-card title="{{_t['paper']}}-{{item.jsonData.counter}}" extra="{{_t['finish']}}"
+            thumb="../../images/order-details/icon-jycg.png" thumb-style="border-radius: 50%;">
+            <view slot="body">
+              <view class="title">{{item.jsonData.title}}</view>
+              <progress percent="{{item.jsonData.precent}}" active show-info stroke-width="3" />
+            </view>
+
+            <view slot="footer" data-id="{{item.id}}" bindtap='onCLickHistory'>
+              <view wx:for="{{item.jsonData.historyList }}" wx:key="unique" wx:for-index="index" wx:for-item="hisItem">
+                <view wx:if="{{index==0 || historyMap[item.id]}}" class="history-item">
+                  <!-- 订单状态时间 -->
+                  <view wx:if="{{hisItem.status == '20200105'}}" class="history-time-finish">{{item.dateAdd}}</view>
+                  <view  wx:else  class="history-time-start">{{item.dateAdd}}</view>
+                  <!-- 订单状态文字描述 -->
+                  <view wx:if="{{hisItem.status == '20200101'}}"  class="history-desc">{{_t['orderSart']}}</view>
+                  <view  wx:elif="{{hisItem.status == '20200102'}}"   class="history-desc">{{_t['1000words']}}</view>  
+                  <view  wx:elif="{{hisItem.status == '20200103'}}"   class="history-desc">{{_t['2000words']}}</view> 
+                  <view  wx:elif="{{hisItem.status == '20200104'}}"   class="history-desc">{{_t['startpoli']}}</view> 
+                  <view  wx:elif="{{hisItem.status == '20200105'}}"   class="history-desc">{{_t['orderComp']}}</view>               
+                </view>
+              </view>
+            </view>
+
+
+          </wux-card>
+        </wux-wing-blank>
+      </view>
+    </view>
+
+    <view wx:if="{{loading}}">
+      <mp-loading type="circle"></mp-loading>
+    </view>
+    <view class="empty-tips" wx:elif="{{!loading && thesisList.length == 0}}">
+      {{_t['noOrder']}}
+    </view>
+    <!-- <view wx:if="{{thesisList}}" class="weui-cells weui-cells_after-title">
+      <wux-wing-blank wx:for="{{thesisList}}" wx:key="*this" size="default">
+        <wux-card title="{{item.jsonData.thesisName}}" extra="{{item.jsonData.status}}"
+          thumb="../../images/order-details/icon-ddfh.png" thumb-style="border-radius: 50%;">
+          <view slot="body">
+            <view class="title">{{item.jsonData.thesisName}}</view>
+            <progress percent="{{item.jsonData.progress}}" active show-info color="#10AEFF" stroke-width="3" />
+          </view>
+          <view slot="footer">{{item.jsonData.message}}</view>
+        </wux-card>
+      </wux-wing-blank>
+    </view>
+   -->
+
+  </view>
+  <view class="fillings"></view>
+</view>

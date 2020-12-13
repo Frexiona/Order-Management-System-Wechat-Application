@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/status/status",
+    "pages/form/form",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#6e6d6b",
+    "selectedColor": "#1296db",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [{
+        "pagePath": "pages/status/status",
+        "iconPath": "/images/mp/pro.png",
+        "selectedIconPath": "/images/mp/proa.png",
+        "text": "状态"
+      }, {
+        "pagePath": "pages/form/form",
+        "iconPath": "/images/mp/mp.png",
+        "selectedIconPath": "/images/mp/mpa.png",
+        "text": "新建订单"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/images/mp/dt.png",
+        "selectedIconPath": "/images/mp/dta.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
