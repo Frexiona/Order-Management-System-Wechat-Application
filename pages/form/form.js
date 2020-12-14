@@ -109,7 +109,8 @@ const submitForm = async (formData, that) => {
         radio,
         wordLimit,
         date,
-        title
+        title,
+        require
     } = formData;
     const counter = await getCounter();
     const myDate = new Date();
@@ -138,7 +139,9 @@ const submitForm = async (formData, that) => {
         "startTime": "${myDate.toLocaleString()}",
         "fileList": '${JSON.stringify(that.data.fileList)}',
         "historyList": '${JSON.stringify(historyList)}'
-  }`
+  }`;
+  
+  console.log("最后提交", content)
 
 /*
      "uid": "${tokenObj.uid}",                                  用户唯一标识

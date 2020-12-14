@@ -5,7 +5,6 @@ function getLanguage() {
 
 function translate(){
   //返回翻译的对照信息
-  console.log(" getLanguage()", require('./zh_CN.js'))
   return require('./'+ getLanguage() + '.js').default;
 }
 

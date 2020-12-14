@@ -1,4 +1,5 @@
 import language from '../../utils/language';
+import { initalFetch } from '../../utils/login';
 import {
   initalTableBar
 } from '../../utils/tools'
@@ -65,6 +66,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    initalFetch();
     this.setData({
       _t: language._t(),
     })
