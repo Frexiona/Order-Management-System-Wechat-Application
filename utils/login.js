@@ -1,21 +1,13 @@
-<<<<<<< HEAD
-import  { _ , _t } from './language'
-=======
 import {
   _,
   _t
 } from './language'
->>>>>>> develope/1.1.0
 /*
   setStorageSync中
     token用来存 登录信息的token
     loginToken用来存储头像等
 
 */
-<<<<<<< HEAD
-const languageObj =  _;
-=======
->>>>>>> develope/1.1.0
 const WXAPI = require('apifm-wxapi');
 
 // 专属域名
@@ -28,67 +20,11 @@ const initalFetch = () => {
 
 // 设置登录后的code
 const setCode = (code) => {
-<<<<<<< HEAD
-  wx.setStorageSync('code', code, )
-=======
   wx.setStorageSync('code', code)
->>>>>>> develope/1.1.0
 }
 
 // 获取用户登录后的code
 const getCode = () => {
-<<<<<<< HEAD
-  return wx.getStorageSync('code')
-};
-
-const goLogin = (cb)=> {
-  wx.login({
-    success: function (res) {
-      const code = res.code; // 微信登录接口返回的 code 参数，下面登录接口需要用到
-      WXAPI.login_wx(code).then(function (res) {
-        // 登录接口返回结果
-        console.log(res)
-        if (res.code == 10000) {
-
-          wx.showToast({
-            title: `${languageObj["registerTips"]}`,
-            icon: 'none'
-          })
-        } else if (res.code == 0) {
-          const preToken = wx.getStorageSync("token");
-
-          if(preToken){
-          // wx.showToast({
-          //   title: `${languageObj["loginTips"]}`,
-          //   icon: 'success'
-          // })
-        }
-
-          wx.setStorageSync('token', res.data)
-          // wx.navigateBack()
-         if (cb) cb();
-        } else {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
-        }
-      })
-    }
-  })
-}
-
-const goLoinAdvance = () => {
-  wx.login({
-    success: function (res) {
-      const code = res.code; // 微信登录接口返回的 code 参数，下面登录接口需要用到
-      WXAPI.login_wx(code).then(function (res) {
-        // 登录接口返回结果
-        console.log(res)
-        if (res.code == 10000) {
-          wx.showToast({
-            title: `${languageObj["registerTips"]}`,
-=======
   return wx.getStorageSync('code');
 };
 
@@ -118,24 +54,11 @@ const goLogin = (cb) => {
         if (res.code == 10000) { // 1000代表没有注册
           wx.showToast({
             title: `${_('registerTips')}`,
->>>>>>> develope/1.1.0
             icon: 'none'
           })
         } else if (res.code == 0) {
           const preToken = wx.getStorageSync("token");
 
-<<<<<<< HEAD
-          if(preToken){
-          // wx.showToast({
-          //   title: `${language._t()["loginTips"]}`,
-          //   icon: 'success'
-          // })
-        }
-
-          wx.setStorageSync('token', res.data)
-          // wx.navigateBack()
-         if (cb) cb();
-=======
           if (preToken) {
             // wx.showToast({
             //   title: `${_("loginTips")}`,
@@ -145,7 +68,6 @@ const goLogin = (cb) => {
 
           wx.setStorageSync('token', res.data)
           if (cb) cb();
->>>>>>> develope/1.1.0
         } else {
           wx.showToast({
             title: res.msg,
@@ -158,14 +80,6 @@ const goLogin = (cb) => {
 }
 
 // 利用API工厂进行注册
-<<<<<<< HEAD
-const registerApifm = async () => {
-  const code = await getCode();
-  const res = WXAPI.register_simple({
-    code: code
-  })
- 
-=======
 const registerApifm = async (userInfo) => {
   const resp = await wxLoogin();
   const code = resp.code;
@@ -184,7 +98,6 @@ const registerApifm = async (userInfo) => {
     })
   }
 
->>>>>>> develope/1.1.0
   return res;
 }
 

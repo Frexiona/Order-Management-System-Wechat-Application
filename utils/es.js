@@ -33,10 +33,7 @@ const languageMap = {
 
   'fileLimit': '¡El tamaño del archivo no debe superar 4 MBB!',
   'fileTypeLimit': '¡El formato debe ser PDF o Word!',
-<<<<<<< HEAD
-=======
   'registerOk': 'Inscripción exitosa',
->>>>>>> develope/1.1.0
 
   'fileLimit': '文件大小不能超过4MB!🥺',
   'fileTypeLimit': '格式必须为pdf或者word！🥺',

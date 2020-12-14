@@ -1,13 +1,5 @@
 //app.js
 import {  goLogin } from './utils/login';
-<<<<<<< HEAD
-import { language } from './utils/language'
-
-const WXAPI = require('apifm-wxapi');
-
-
-=======
->>>>>>> develope/1.1.0
 
 App({
   onLaunch: function () {

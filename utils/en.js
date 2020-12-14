@@ -29,10 +29,7 @@ const languageMap = {
 
   'registerTips': "Registration is required before use",
   'loginTips': 'Login successful',
-<<<<<<< HEAD
-=======
   'registerOk': 'Register Ok',
->>>>>>> develope/1.1.0
 
   'fileLimit': 'File size cannot exceed 4MB!',
   'fileTypeLimit': 'Format must be PDF or word!',

@@ -94,14 +94,7 @@ Page({
                   // 获取到用户的 code 之后：res.code
                   console.log("用户的code:" + res.code);
                   const code = res.code;
-<<<<<<< HEAD
-                  wx.setStorage({
-                    data: code,
-                    key: 'code',
-                  })
-=======
                   wx.setStorageSync('code', code)
->>>>>>> develope/1.1.0
 
                   WXAPI.register_simple({
                     code: code
