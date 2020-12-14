@@ -29,6 +29,7 @@ const languageMap = {
 
   'registerTips': "使用过前需要注册",
   'loginTips': '登录成功',
+  'registerOk': '注册成功',
 
   'fileLimit': '文件大小不能超过4MB!🥺',
   'fileTypeLimit': '格式必须为pdf或者word！🥺',
