@@ -6,10 +6,19 @@ import {
   goLogin
 } from '../../utils/login';
 import language from '../../utils/language';
+<<<<<<< HEAD
 import { initalTableBar } from '../../utils/tools'
 
 
 const app = getApp();
+=======
+import { initalTableBar } from '../../utils/tools';
+
+
+const app = getApp();
+const WXAPI = require('apifm-wxapi');
+initalFetch();
+>>>>>>> develope/1.1.0
 
 // 定义BarTitle
 const setBarTitle = (that) => {
@@ -37,6 +46,11 @@ Page({
 
   onLoad: function () {
     initalFetch();
+<<<<<<< HEAD
+=======
+
+    console.log("initalFetch",initalFetch)
+>>>>>>> develope/1.1.0
     this.setData({
       _t: language._t(),
   })
@@ -92,9 +106,25 @@ Page({
 
     app.globalData.userInfo = e.detail.userInfo
     wx.setStorageSync('loginToken', e.detail)
+<<<<<<< HEAD
     registerApifm().then(res => {
       goLogin()
     })
+=======
+
+    console.log("用户信息为：", e.detail)
+    registerApifm(e.detail).then(res => {
+      console.log("注册接口返回结果：", res)
+      // 注册成功code返回为0
+      if(res.code == 0){
+        wx.showToast({
+          title: `${language._('registerOk')}`,
+        })
+      }
+      goLogin()
+    })
+    .catch( err => console.error("eerr",err))
+>>>>>>> develope/1.1.0
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true

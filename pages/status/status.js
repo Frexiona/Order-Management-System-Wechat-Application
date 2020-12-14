@@ -1,4 +1,8 @@
 import language from '../../utils/language';
+<<<<<<< HEAD
+=======
+import { initalFetch } from '../../utils/login';
+>>>>>>> develope/1.1.0
 import {
   initalTableBar
 } from '../../utils/tools'
@@ -65,6 +69,10 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+<<<<<<< HEAD
+=======
+    initalFetch();
+>>>>>>> develope/1.1.0
     this.setData({
       _t: language._t(),
     })
