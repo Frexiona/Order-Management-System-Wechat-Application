@@ -30,8 +30,9 @@ const languageMap = {
   'registerTips': "使用过前需要注册",
   'loginTips': '登录成功',
   'registerOk': '注册成功',
+  'submitSuc': "提交成功",
 
-  'fileLimit': '文件大小不能超过4MB!🥺',
+  'fileLimit': '文件大小不能超过2MB!🥺',
   'fileTypeLimit': '格式必须为pdf或者word！🥺',
   'languageLimit':'语言为必选项🥺',
   'nameLimit': '姓名为必选项🥺',
@@ -41,6 +42,7 @@ const languageMap = {
   'wordLimitReq':'字数限制必填🥺',
   'dateLimit':'Deadline也太近啦😣请多给我们一些时间🥺',
   'requireLimit':'基本需求必填🥺',
+  'uploadFileTips':'文件大小需小于2mb， 如上传失败请直接联系客服😣'
 }
 
 export default languageMap;
