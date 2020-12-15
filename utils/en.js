@@ -30,8 +30,9 @@ const languageMap = {
   'registerTips': "Registration is required before use",
   'loginTips': 'Login successful',
   'registerOk': 'Register Ok',
+  'submitSuc': "Submit Success",
 
-  'fileLimit': 'File size cannot exceed 4MB!',
+  'fileLimit': 'File size cannot exceed 2MB!',
   'fileTypeLimit': 'Format must be PDF or word!',
 
   'fileLimit': 'The file size cannot exceed 4MB!🥺',
@@ -44,6 +45,7 @@ const languageMap = {
   'wordLimitReq':'Word limit required🥺',
   'dateLimit':'Deadline is too close. Please give us more time🥺',
   'requireLimit':'Basic requirement is required🥺',
+  'uploadFileTips': 'The file size should be less than 2MB. If the upload fails, please contact customer service directly'
 }
 
 export default languageMap;

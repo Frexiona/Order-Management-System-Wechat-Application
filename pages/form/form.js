@@ -1,9 +1,13 @@
 // pages/form/form.js
 import language from '../../utils/language';
-import { initalFetch } from '../../utils/login';
-import { initalTableBar } from '../../utils/tools';
+import {
+    initalFetch
+} from '../../utils/login';
+import {
+    initalTableBar
+} from '../../utils/tools';
 
-const languageObj =  language._t();
+const languageObj = language._t();
 const WXAPI = require('apifm-wxapi');
 const fetchForm = async () => {
     const tokenObj = wx.getStorageSync('token');
@@ -24,8 +28,8 @@ const getCounter = async () => {
 // 定义BarTitle
 const setBarTitle = (that) => {
     wx.setNavigationBarTitle({
-        title: that.data._t["newOrder"] || "新建订单(New Order)" 
-      })
+        title: that.data._t["newOrder"] || "新建订单(New Order)"
+    })
 }
 
 Page({
@@ -52,7 +56,7 @@ Page({
      * Lifecycle function--Called when page is initially rendered
      */
     onReady: function () {
-       
+
     },
 
     /**
@@ -97,9 +101,26 @@ Page({
 })
 
 const dateObj = new Date();
-const month = dateObj.getMonth();
+const month = dateObj.getMonth() + 1;
 const day = String(dateObj.getDate()).padStart(2, '0');
 const year = dateObj.getFullYear();
+const defaultData = {
+    showTopTips: false,
+    
+    _t: {},
+
+    date: `${year}-${month}-${day}`,
+
+    uploadFileTips: `${languageObj['uploadFileTips']}`, // 文件上传提示
+
+    formData: {
+
+    },
+
+    fileList: [],
+
+    path: '',
+}
 
 const submitForm = async (formData, that) => {
     const tokenObj = wx.getStorageSync('token');
@@ -140,45 +161,59 @@ const submitForm = async (formData, that) => {
         "fileList": '${JSON.stringify(that.data.fileList)}',
         "historyList": '${JSON.stringify(historyList)}'
   }`;
-  
-  console.log("最后提交", content)
 
-/*
-     "uid": "${tokenObj.uid}",                                  用户唯一标识
-        "date": "${date}",    
-        "email": "${email}",
-        "name": "${name}",
-        "radio": "${radio}",
-        "wordLimit":"${wordLimit}",
-        "title": "${title}",
-        "counter": "${counter}",                                订单的counter数
-        "currStatus": "20200101",                               当前状态 默认为 订单开始
-        "precent": "0",                                         百分比
-        "startTime": "${myDate.toLocaleString()}",              订单开始时间
-        "fileList": '${JSON.stringify(that.data.fileList)}',    文件列表
-        "historyList": '${JSON.stringify(historyList)}'         历史状态list
-*/
+    console.log("最后提交", content)
+
+
+
+    /*
+         "uid": "${tokenObj.uid}",                                  用户唯一标识
+            "date": "${date}",    
+            "email": "${email}",
+            "name": "${name}",
+            "radio": "${radio}",
+            "wordLimit":"${wordLimit}",
+            "title": "${title}",
+            "counter": "${counter}",                                订单的counter数
+            "currStatus": "20200101",                               当前状态 默认为 订单开始
+            "precent": "0",                                         百分比
+            "startTime": "${myDate.toLocaleString()}",              订单开始时间
+            "fileList": '${JSON.stringify(that.data.fileList)}',    文件列表
+            "historyList": '${JSON.stringify(historyList)}'         历史状态list
+    */
     WXAPI.jsonSet({
         type: 'apifm-wxapi-create-order',
         token: tokenObj.token,
         content,
-            /*  
-            注意以下几个字段：
-                status 状态 2020001 代表进行中 2020003 代表结束
-                describe 代表卡片页脚
-                process  代表右上角文字状态
-                startTime 表单提交时间，也代表开始时间
-                finishTime 论文结束时间（订单完成时间） 默认为null
-            */
+        /*  
+        注意以下几个字段：
+            status 状态 2020001 代表进行中 2020003 代表结束
+            describe 代表卡片页脚
+            process  代表右上角文字状态
+            startTime 表单提交时间，也代表开始时间
+            finishTime 论文结束时间（订单完成时间） 默认为null
+        */
     }).then(res => {
         if (res.code == 0) {
             wx.showToast({
-                title: '提交成功',
+                title: `${languageObj['submitSuc']}`,
                 icon: 'success'
             })
             that.setData({
-                submitFormLoading: false
+                submitFormLoading: false,
+                formData:{
+                    name:"",
+                    email:"",
+                    wordLimit:'',
+                    title:'',
+                    date: date,
+                    require:'',
+                    radio,
+                }
             });
+            wx.switchTab({
+                url: '../status/status',
+            })
         } else {
             wx.showToast({
                 title: res.msg,
@@ -190,30 +225,7 @@ const submitForm = async (formData, that) => {
 
 Component({
     data: {
-        showTopTips: false,
-        _t: {},
-
-        radioItems: [{
-                name: `${languageObj["english"]}`,
-                value: 'english',
-                // checked: true
-            },
-            {
-                name: `${languageObj["spanish"]}`,
-                value: 'spanish'
-            }
-        ],
-
-        date: `${year}-${month}-${day}`,
-
-        formData: {
-
-        },
-
-        fileList: [],
-
-        path: '',
-
+        ...defaultData,
         rules: [{
             name: 'radio',
             rules: {
@@ -245,9 +257,9 @@ Component({
             name: 'wordLimit',
             rules: {
                 required: true,
-                min:0,
-                max:20000,
-                message:`${languageObj['wordLimitReq']}`
+                min: 0,
+                max: 20000,
+                message: `${languageObj['wordLimitReq']}`
             },
         }, {
             name: 'date',
@@ -259,19 +271,29 @@ Component({
             name: 'require',
             rules: {
                 required: true,
-                message:  `${languageObj['requireLimit']}`,
+                message: `${languageObj['requireLimit']}`,
                 maxLength: 200,
             },
-        }, 
-    ],
+        }],
 
-    uploadLoading: {
-        status: false,
-        text: languageObj['upload']
-    },
+        radioItems: [{
+                name: `${languageObj["english"]}`,
+                value: 'english',
+                // checked: true
+            },
+            {
+                name: `${languageObj["spanish"]}`,
+                value: 'spanish'
+            }
+        ],
+
+        uploadLoading: {
+            status: false,
+            text: languageObj['upload']
+        },
         submitFormLoading: false,
     },
-    attached: function(){
+    attached: function () {
         this.setData({
             _t: languageObj,
         })
@@ -288,6 +310,9 @@ Component({
                 radioItems: radioItems,
                 [`formData.radio`]: e.detail.value
             });
+        },
+        formReset: function(e){
+            console.log(e)
         },
         bindDateChange: function (e) {
             this.setData({
@@ -308,7 +333,7 @@ Component({
                 time: e.detail.value
             })
         },
-        requireChange: function(e) {
+        requireChange: function (e) {
             const {
                 field
             } = e.currentTarget.dataset
@@ -328,16 +353,16 @@ Component({
                     var filename = res.tempFiles[0].name;
                     var newfilename = filename + "";
                     const fileType = newfilename.indexOf(".pdf") == -1 && newfilename.indexOf(".doc") == -1 && newfilename.indexOf(".docx") == -1
-                    const newFileList = that.data.fileList; 
+                    const newFileList = that.data.fileList;
 
-                    
-                    if (size > 4194304 ) {
+
+                    if (size > 2097152) {
                         wx.showToast({
                             title: `${languageObj['fileLimit']}`, // 这里如果更改了大小 en.js zh_cn的语言文件也要改
                             icon: "none",
                             mask: true
                         })
-                    }else if(fileType){
+                    } else if (fileType) {
                         wx.showToast({
                             title: `${languageObj['fileTypeLimit']}`,
                             icon: "none",
@@ -354,11 +379,11 @@ Component({
 
                         // 通过url将文件上传上去
 
-                            WXAPI.uploadFile(tokenObj.token, that.data.path).then(res => {
+                        WXAPI.uploadFile(tokenObj.token, that.data.path).then(res => {
                                 console.log("文件上传后的结果", res, filename)
                                 newFileList.push({
                                     filename,
-                                    url:res.data.url
+                                    url: res.data.url
                                 });
                                 that.setData({
                                     path: null,
@@ -370,6 +395,7 @@ Component({
                                 })
                             })
                             .catch(err => {
+                                console.error("文件上传错误", err)
                                 wx.showToast({
                                     title: `${err.errMsg}`,
                                     icon: "none",
@@ -382,8 +408,8 @@ Component({
                                     },
                                 })
                             })
-    
-                        
+
+
 
                     }
                 }
@@ -400,7 +426,7 @@ Component({
                 return
             }
             this.selectComponent('#form').validate((valid, errors) => {
-
+ 
                 if (!valid) {
                     const firstError = Object.keys(errors)
                     if (firstError.length) {
@@ -415,13 +441,15 @@ Component({
                     // })
                     console.log("表单数据", this.data.formData)
 
-                     const { wordLimit  } = this.data.formData;
-
-                     if(parseInt(wordLimit))    submitForm(this.data.formData, this);
-                     else wx.showToast({
+                    const {
+                        wordLimit
+                    } = this.data.formData;
+                 
+                    if (parseInt(wordLimit)) submitForm(this.data.formData, this);
+                    else wx.showToast({
                         title: '字数限制，必须填数字哦🥺',
-                        icon:'none',
-                     })
+                        icon: 'none',
+                    })
                 }
             })
         }
@@ -429,7 +457,7 @@ Component({
     },
     pageLifetimes: {
         show() {
-            initalTableBar(1,this)
+            initalTableBar(1, this)
         }
-      }
+    }
 });

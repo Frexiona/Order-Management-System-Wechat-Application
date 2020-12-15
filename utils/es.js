@@ -30,13 +30,14 @@ const languageMap = {
 
   'registerTips': "Antes de usar",
   'loginTips': 'Acceso concedido',
+  'submitSuc': "Presentación exitosa",
 
-  'fileLimit': '¡El tamaño del archivo no debe superar 4 MBB!',
+  'fileLimit': '¡El tamaño del archivo no debe superar 2 MB!',
   'fileTypeLimit': '¡El formato debe ser PDF o Word!',
   'registerOk': 'Inscripción exitosa',
 
-  'fileLimit': '文件大小不能超过4MB!🥺',
-  'fileTypeLimit': '格式必须为pdf或者word！🥺',
+  'fileLimit': 'El tamaño del archivo no debe superar 4 MB!🥺',
+  'fileTypeLimit': 'El formato debe ser PDF o Word！🥺',
   'languageLimit':'Idioma como opción necesaria🥺',
   'nameLimit': 'Nombre como opción necesaria🥺',
   'titleLimit': 'Opciones del título🥺',
@@ -45,6 +46,7 @@ const languageMap = {
   'wordLimitReq':'Límite de palabras🥺',
   'dateLimit':'Deadline está demasiado cerca. Por favor, danos más tiempo🥺',
   'requireLimit':'Necesidades básicas🥺',
+  'uploadFileTips': 'El tamaño del archivo debe ser inferior a 2 MB. Si la carga falla, contacte directamente al cliente.'
 }
 
 export default languageMap;
