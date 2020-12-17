@@ -44,7 +44,8 @@ const languageMap = {
   'emailLimit':'Correo electrónico como opción necesaria🥺',
   'emailFormLimit':'Rellene el formato correcto de email🥺',
   'wordLimitReq':'Límite de palabras🥺',
-  'dateLimit':'Deadline está demasiado cerca. Por favor, danos más tiempo🥺',
+  'wordLimitNum':"The word limit must be a number 🥺",
+  'dateLimit':'El límite de palabras debe ser un número🥺',
   'requireLimit':'Necesidades básicas🥺',
   'uploadFileTips': 'El tamaño del archivo debe ser inferior a 2 MB. Si la carga falla, contacte directamente al cliente.'
 }

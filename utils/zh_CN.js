@@ -40,6 +40,7 @@ const languageMap = {
   'emailLimit':'Email为必选项🥺',
   'emailFormLimit':'请填写正确Email格式🥺',
   'wordLimitReq':'字数限制必填🥺',
+  'wordLimitNum':"字数限制必须是数字🥺",
   'dateLimit':'Deadline也太近啦😣请多给我们一些时间🥺',
   'requireLimit':'基本需求必填🥺',
   'uploadFileTips':'文件大小需小于2mb， 如上传失败请直接联系客服😣'
