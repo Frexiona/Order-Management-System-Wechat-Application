@@ -38,8 +38,8 @@ const languageMap = {
 
   'nameNote': 'Inserta tu nombre',
   'emailNote': 'Inserta tu email',
-  'titleNote': 'Inserta el titulo',
-  'wordLimitNode': 'Inserta el limite depalabras',
+  'titleNote': 'Inserta el título del trabajo',
+  'wordLimitNode': 'Inserta el límite de palabras',
   'fileLimit': 'El tamaño del archivo no debe superar 4 MB!🥺',
   'fileTypeLimit': 'El formato debe ser PDF o Word！🥺',
   'languageLimit':'Idioma como opción necesaria🥺',
