@@ -105,14 +105,21 @@ Page({
         wx.showToast({
           title: `${language._('registerOk')}`,
         })
+        this.setData({
+          userInfo: e.detail.userInfo,
+          hasUserInfo: true
+        })
+      }
+      else {
+        wx.showToast({
+          title: `${res.msg}`,
+        })
       }
       goLogin()
+      
     })
     .catch( err => console.error("eerr",err))
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    
   },
 
 })

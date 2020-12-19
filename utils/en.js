@@ -43,6 +43,7 @@ const languageMap = {
   'emailLimit':'Email required🥺',
   'emailFormLimit':'Please fill in the correct email format🥺',
   'wordLimitReq':'Word limit required🥺',
+  'wordLimitNum': "The word limit must be a number 🥺",
   'dateLimit':'Deadline is too close. Please give us more time🥺',
   'requireLimit':'Basic requirement is required🥺',
   'uploadFileTips': 'The file size should be less than 2MB. If the upload fails, please contact customer service directly'

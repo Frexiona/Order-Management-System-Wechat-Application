@@ -166,20 +166,20 @@ const submitForm = async (formData, that) => {
 
 
 
-    /*
-         "uid": "${tokenObj.uid}",                                  用户唯一标识
-            "date": "${date}",    
-            "email": "${email}",
-            "name": "${name}",
-            "radio": "${radio}",
-            "wordLimit":"${wordLimit}",
-            "title": "${title}",
+    /*                                                              此为订单创建时的JSON
+         "uid": "${tokenObj.uid}",                                   用户唯一标识（暂时无用）
+            "date": "${date}",                                       日期
+            "email": "${email}",                                    邮箱
+            "name": "${name}",                                      姓名
+            "radio": "${radio}",                                    语言选择
+            "wordLimit":"${wordLimit}",                             字数限制
+            "title": "${title}",                                    标题
             "counter": "${counter}",                                订单的counter数
             "currStatus": "20200101",                               当前状态 默认为 订单开始
             "precent": "0",                                         百分比
             "startTime": "${myDate.toLocaleString()}",              订单开始时间
             "fileList": '${JSON.stringify(that.data.fileList)}',    文件列表
-            "historyList": '${JSON.stringify(historyList)}'         历史状态list
+            "historyList": '${JSON.stringify(historyList)}'         历史状态list，我已经默认创建了第一条开始接单的状态，后台添加式请从当前list开始添加
     */
     WXAPI.jsonSet({
         type: 'apifm-wxapi-create-order',
@@ -447,7 +447,7 @@ Component({
                  
                     if (parseInt(wordLimit)) submitForm(this.data.formData, this);
                     else wx.showToast({
-                        title: '字数限制，必须填数字哦🥺',
+                        title: `${languageObj['wordLimitNum']}`,
                         icon: 'none',
                     })
                 }
