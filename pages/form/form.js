@@ -6,6 +6,9 @@ import {
 import {
     initalTableBar
 } from '../../utils/tools';
+import {
+    orderMap
+} from '../../utils/map';
 
 const languageObj = language._t();
 const WXAPI = require('apifm-wxapi');
@@ -105,6 +108,8 @@ const month = dateObj.getMonth() + 1;
 const day = String(dateObj.getDate()).padStart(2, '0');
 const year = dateObj.getFullYear();
 const defaultData = {
+    orderMap, // 订单对应的Map
+
     showTopTips: false,
     
     _t: {},
@@ -137,7 +142,7 @@ const submitForm = async (formData, that) => {
     const myDate = new Date();
     const historyList = [{
         time: `${myDate.toLocaleString()}`,
-        status: '20200101',
+        status: `${orderMap.orderStart.key}`,
     }]
 
 
@@ -155,7 +160,7 @@ const submitForm = async (formData, that) => {
         "title": "${title}",
         "require": "${require}",
         "counter": "${counter}",
-        "currStatus": "20200101",
+        "currStatus": "${orderMap.orderStart.key}",
         "precent": "0",
         "startTime": "${myDate.toLocaleString()}",
         "fileList": '${JSON.stringify(that.data.fileList)}',
@@ -175,7 +180,7 @@ const submitForm = async (formData, that) => {
             "wordLimit":"${wordLimit}",                             字数限制
             "title": "${title}",                                    标题
             "counter": "${counter}",                                订单的counter数
-            "currStatus": "20200101",                               当前状态 默认为 订单开始
+            "currStatus": `${orderMap.orderStart.key}`,                               当前状态 默认为 订单开始
             "precent": "0",                                         百分比
             "startTime": "${myDate.toLocaleString()}",              订单开始时间
             "fileList": '${JSON.stringify(that.data.fileList)}',    文件列表
@@ -187,7 +192,7 @@ const submitForm = async (formData, that) => {
         content,
         /*  
         注意以下几个字段：
-            status 状态 2020001 代表进行中 2020003 代表结束
+   
             describe 代表卡片页脚
             process  代表右上角文字状态
             startTime 表单提交时间，也代表开始时间
@@ -315,9 +320,16 @@ Component({
             console.log(e)
         },
         bindDateChange: function (e) {
+            const tempDate = e.detail.value
+            if(Date.parse(`${year}-${month}-${day}`) < Date.parse(tempDate))
             this.setData({
-                date: e.detail.value,
+                date: tempDate,
                 [`formData.date`]: e.detail.value
+            })
+            else
+            wx.showToast({
+              title: `${languageObj['dateLimit']}`,
+              icon:'none'
             })
         },
         formInputChange(e) {

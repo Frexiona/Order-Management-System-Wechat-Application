@@ -10,7 +10,7 @@
 
     <view wx:for="{{thesisList}}" wx:key="unique" wx:for-index="idx" wx:for-item="item">
       <!-- 进行中的订单 -->
-      <view class="order-card" wx:if="{{item.jsonData.currStatus != 20200105}}">
+      <view class="order-card" wx:if="{{item.jsonData.currStatus != orderMap.orderComp.key}}">
 
         <wux-wing-blank size="default">
           <wux-card title="{{_t['paper']}}-{{item.jsonData.counter}}" extra="{{_t['handIn']}}"
@@ -24,14 +24,14 @@
               <view wx:for="{{item.jsonData.historyList }}" wx:key="unique" wx:for-index="index" wx:for-item="hisItem">
                 <view wx:if="{{index==0 || historyMap[item.id]}}" class="history-item">
                   <!-- 订单状态时间 -->
-                  <view wx:if="{{hisItem.status == '20200105'}}" class="history-time-finish">{{item.dateAdd}}</view>
-                  <view  wx:else  class="history-time-start">{{item.dateAdd}}</view>
+                  <view wx:if="{{hisItem.status == orderMap.orderComp.key}}" class="history-time-finish">{{hisItem.time}}</view>
+                  <view  wx:else  class="history-time-start">{{hisItem.time}}</view>
                   <!-- 订单状态文字描述 -->
-                  <view wx:if="{{hisItem.status == '20200101'}}"  class="history-desc">{{_t['orderSart']}}</view>
-                  <view  wx:elif="{{hisItem.status == '20200102'}}"   class="history-desc">{{_t['1000words']}}</view>  
-                  <view  wx:elif="{{hisItem.status == '20200103'}}"   class="history-desc">{{_t['2000words']}}</view> 
-                  <view  wx:elif="{{hisItem.status == '20200104'}}"   class="history-desc">{{_t['startpoli']}}</view> 
-                  <view  wx:elif="{{hisItem.status == '20200105'}}"   class="history-desc">{{_t['orderComp']}}</view>               
+                  <view wx:if="{{hisItem.status == orderMap.orderStart.key}}"  class="history-desc">{{orderMap.orderStart.word}}</view>
+                  <view  wx:elif="{{hisItem.status ==  orderMap.oneThouWords.key}}"   class="history-desc">{{orderMap.oneThouWords.word}}</view>  
+                  <view  wx:elif="{{hisItem.status ==  orderMap.twoThouWords.key}}"   class="history-desc">{{orderMap.twoThouWords.word}}</view> 
+                  <view  wx:elif="{{hisItem.status ==  orderMap.startPoli.key}}"   class="history-desc">{{ orderMap.startPoli.word}}</view> 
+                  <view  wx:elif="{{hisItem.status ==  orderMap.orderComp.key}}"   class="history-desc">{{orderMap.orderComp.word}}</view>               
                 </view>
               </view>
 
@@ -42,7 +42,7 @@
       </view>
 
       <!-- 已经完成的订单 -->
-      <view class="order-card" wx:elif="{{item.jsonData.currStatus == 20200105}}">
+      <view class="order-card" wx:elif="{{item.jsonData.currStatus == orderMap.orderComp.key}}">
         <wux-wing-blank size="default">
           <wux-card title="{{_t['paper']}}-{{item.jsonData.counter}}" extra="{{_t['finish']}}"
             thumb="../../images/order-details/icon-jycg.png" thumb-style="border-radius: 50%;">
@@ -55,14 +55,14 @@
               <view wx:for="{{item.jsonData.historyList }}" wx:key="unique" wx:for-index="index" wx:for-item="hisItem">
                 <view wx:if="{{index==0 || historyMap[item.id]}}" class="history-item">
                   <!-- 订单状态时间 -->
-                  <view wx:if="{{hisItem.status == '20200105'}}" class="history-time-finish">{{item.dateAdd}}</view>
-                  <view  wx:else  class="history-time-start">{{item.dateAdd}}</view>
+                  <view wx:if="{{hisItem.status == orderMap.orderComp.key}}" class="history-time-finish">{{hisItem.dateAdd}}</view>
+                  <view  wx:else  class="history-time-start">{{hisItem.time}}</view>
                   <!-- 订单状态文字描述 -->
-                  <view wx:if="{{hisItem.status == '20200101'}}"  class="history-desc">{{_t['orderSart']}}</view>
-                  <view  wx:elif="{{hisItem.status == '20200102'}}"   class="history-desc">{{_t['1000words']}}</view>  
-                  <view  wx:elif="{{hisItem.status == '20200103'}}"   class="history-desc">{{_t['2000words']}}</view> 
-                  <view  wx:elif="{{hisItem.status == '20200104'}}"   class="history-desc">{{_t['startpoli']}}</view> 
-                  <view  wx:elif="{{hisItem.status == '20200105'}}"   class="history-desc">{{_t['orderComp']}}</view>               
+                  <view wx:if="{{hisItem.status == orderMap.orderStart.key}}"  class="history-desc">{{orderMap.orderStart.word}}</view>
+                  <view  wx:elif="{{hisItem.status == orderMap.oneThouWords.key}}"   class="history-desc">{{orderMap.oneThouWords.word}}</view>  
+                  <view  wx:elif="{{hisItem.status == orderMap.twoThouWords.key}}"   class="history-desc">{{orderMap.twoThouWords.word}}</view> 
+                  <view  wx:elif="{{hisItem.status == orderMap.startPoli.key}}"   class="history-desc">{{orderMap.startPoli.word}}</view> 
+                  <view  wx:elif="{{hisItem.status == orderMap.orderComp.key}}"   class="history-desc">{{orderMap.orderComp.word}}</view>               
                 </view>
               </view>
             </view>
@@ -73,25 +73,15 @@
       </view>
     </view>
 
+    <!--加载订单时的loading-->
     <view wx:if="{{loading}}">
       <mp-loading type="circle"></mp-loading>
     </view>
+
+    <!--当没有订单时候的提示-->
     <view class="empty-tips" wx:elif="{{!loading && thesisList.length == 0}}">
       {{_t['noOrder']}}
     </view>
-    <!-- <view wx:if="{{thesisList}}" class="weui-cells weui-cells_after-title">
-      <wux-wing-blank wx:for="{{thesisList}}" wx:key="*this" size="default">
-        <wux-card title="{{item.jsonData.thesisName}}" extra="{{item.jsonData.status}}"
-          thumb="../../images/order-details/icon-ddfh.png" thumb-style="border-radius: 50%;">
-          <view slot="body">
-            <view class="title">{{item.jsonData.thesisName}}</view>
-            <progress percent="{{item.jsonData.progress}}" active show-info color="#10AEFF" stroke-width="3" />
-          </view>
-          <view slot="footer">{{item.jsonData.message}}</view>
-        </wux-card>
-      </wux-wing-blank>
-    </view>
-   -->
 
   </view>
   <view class="fillings"></view>

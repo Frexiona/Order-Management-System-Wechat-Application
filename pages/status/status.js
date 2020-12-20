@@ -2,15 +2,10 @@ import language from '../../utils/language';
 import { initalFetch } from '../../utils/login';
 import {
   initalTableBar
-} from '../../utils/tools'
-
-const orderMap = {
-  20200105: '订单完成',
-  20200104: '开始润色',
-  20200103: '已完成2000字',
-  20200102: '已完成1000字',
-  20200101: '开始接单',
-}
+} from '../../utils/tools';
+import {
+  orderMap
+} from '../../utils/map';
 
 const WXAPI = require('apifm-wxapi')
 const fetchForm = async () => {
@@ -33,7 +28,7 @@ const resSort = (arr = []) => {
 
     item.jsonData.historyList = JSON.parse(hisList);
     item.jsonData.historyList = item.jsonData.historyList.reverse();
-    if (item.jsonData.currStatus === "20200101") {
+    if (item.jsonData.currStatus === `${orderMap.orderStart.key}`) {
       currArr.push(item)
     } else {
       finishArr.push(item);
@@ -56,6 +51,7 @@ Page({
    * Page initial data
    */
   data: {
+    orderMap,
     thesisList: [],
     loading: true,
     _t: {},

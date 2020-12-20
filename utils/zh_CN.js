@@ -32,6 +32,12 @@ const languageMap = {
   'registerOk': '注册成功',
   'submitSuc': "提交成功",
 
+  
+  'nameNote': '请输入姓名',
+  'emailNote': '请输入Email',
+  'titleNote': '请输入论文标题',
+  'wordLimitNote': '请输入文字限制',
+  'reqtNote': '请输入要求',
   'fileLimit': '文件大小不能超过2MB!🥺',
   'fileTypeLimit': '格式必须为pdf或者word！🥺',
   'languageLimit':'语言为必选项🥺',
@@ -43,7 +49,8 @@ const languageMap = {
   'wordLimitNum':"字数限制必须是数字🥺",
   'dateLimit':'Deadline也太近啦😣请多给我们一些时间🥺',
   'requireLimit':'基本需求必填🥺',
-  'uploadFileTips':'文件大小需小于2mb， 如上传失败请直接联系客服😣'
+  'uploadFileTips':'文件大小需小于2mb， 如上传失败请直接联系客服😣（只允许微信本地内容上传）',
+  'motto': '感谢您信任 Nailed 😆'
 }
 
 export default languageMap;
