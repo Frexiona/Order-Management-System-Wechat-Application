@@ -52,6 +52,7 @@ const goLogin = (cb) => {
         // 登录接口返回结果
         console.log('API工厂登录接口返回结果:', res)
         if (res.code == 10000) { // 1000代表没有注册
+          wx.setStorageSync('token', null)
           wx.showToast({
             title: `${_('registerTips')}`,
             icon: 'none'
@@ -65,7 +66,7 @@ const goLogin = (cb) => {
             //   icon: 'success'
             // })
           }
-
+          // api工厂如果成功登陆会返回一个token 再调用一些api时会使用
           wx.setStorageSync('token', res.data)
           if (cb) cb();
         } else {

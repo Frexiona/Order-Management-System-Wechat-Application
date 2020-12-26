@@ -5,19 +5,19 @@
             <mp-cells title="📄 {{_t['basicInfo']}}">
                 <mp-cell prop="name" title="{{_t['name']}}" ext-class="">
                     <input bindinput="formInputChange" data-field="name" class="weui-input"
-                        placeholder="Input your name" value="{{formData.name}}"/>
+                        placeholder="{{_t['nameNote']}}" value="{{formData.name}}"/>
                 </mp-cell>
                 <mp-cell prop="email" title="{{_t['email']}}" ext-class="">
                     <input bindinput="formInputChange" data-field="email" class="weui-input"
-                        placeholder="Input your Email" value="{{formData.email}}"/>
+                        placeholder="{{_t['emailNote']}}" value="{{formData.email}}"/>
                 </mp-cell>
                 <mp-cell prop="name" title="{{_t['title']}}" ext-class="">
                     <input bindinput="formInputChange" data-field="title" class="weui-input"
-                        placeholder="Input your paper title" value="{{formData.title}}" />
+                        placeholder="{{_t['titleNote']}}" value="{{formData.title}}" />
                 </mp-cell>
                 <mp-cell prop="number" title="{{_t['wordLimit']}}" ext-class="">
                     <input bindinput="formInputChange" data-field="wordLimit" class="weui-input"
-                        placeholder="Input your word limit" value="{{formData.wordLimit}}"/>
+                        placeholder="{{_t['wordLimitNote']}}" value="{{formData.wordLimit}}"/>
                 </mp-cell>
                 <mp-cell prop="date" title="{{_t['deadline']}}" ext-class="">
                     <picker data-field="date" mode="date" value="{{date}}" bindchange="bindDateChange">
@@ -35,16 +35,10 @@
                 </mp-cells>
 
             <view class="weui-cells__title">📝 {{_t['require']}}</view>
-            <!-- <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell">
-                    <view class="weui-cell__bd">
-                        <textarea class="weui-textarea" placeholder="please input requirements" style="height: 3.3em" />
-                        <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view> -->
+
 
             <mp-cell prop="name"  ext-class="">
-                    <textarea class="weui-textarea" placeholder="please input requirements" 
+                    <textarea class="weui-textarea" placeholder="{{_t['reqNote']}}" 
                     bindinput="requireChange" data-field="require"   value="{{formData.require}}"
                     style="height: 5.3em" />
                 </mp-cell>

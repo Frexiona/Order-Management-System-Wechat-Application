@@ -39,7 +39,8 @@ const languageMap = {
   'nameNote': 'Inserta tu nombre',
   'emailNote': 'Inserta tu email',
   'titleNote': 'Inserta el título del trabajo',
-  'wordLimitNode': 'Inserta el límite de palabras',
+  'wordLimitNote': 'Inserta el límite de palabras',
+  'reqtNote': 'Requisitos de entrada',
   'fileLimit': 'El tamaño del archivo no debe superar 4 MB!🥺',
   'fileTypeLimit': 'El formato debe ser PDF o Word！🥺',
   'languageLimit':'Idioma como opción necesaria🥺',
@@ -51,7 +52,8 @@ const languageMap = {
   'wordLimitNum':"The word limit must be a number 🥺",
   'dateLimit':'El límite de palabras debe ser un número🥺',
   'requireLimit':'Necesidades básicas🥺',
-  'uploadFileTips': 'El tamaño del archivo debe ser inferior a 2 MB. Si la carga falla, contacte directamente al cliente.'
+  'uploadFileTips': 'El tamaño del archivo debe ser inferior a 2 MB. Si la carga falla, contacte directamente al cliente（Sólo se permite enviar mensajes locales）',
+  'motto': 'Gracias por usar Nailed 😆'
 }
 
 export default languageMap;
