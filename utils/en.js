@@ -1,6 +1,6 @@
 const languageMap = {
   'basicInfo':"Basic Info",
-  'name': 'name',
+  'name': 'Name',
   'email': 'Email',
   'title': 'Thesis Title',
   'wordLimit': 'Word Limit',
