@@ -6,7 +6,7 @@ const languageMap = {
   'wordLimit': 'Word Limit',
   'deadline': 'Deadline',
   'language': 'Language',
-  'require': "Requesments",
+  'require': "Requirements",
   'noOrder': "Order List is Empty",
   'paper': "Thesis",
   'handIn': 'Pending..',
